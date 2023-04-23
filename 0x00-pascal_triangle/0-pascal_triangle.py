@@ -4,17 +4,20 @@ This is a module that gives the Pascal's triangle of a number.
 """
 
 
-def pascal_triangle(n):
-    """This returns a list of lists of integers representing the Pascal’s triangle of n."""
+def pascal_triangle(n: int) -> List[List[int]]:
+    """
+    Returns a list of lists of integers representing the
+    Pascal’s triangle of n.
+    """
     if n <= 0:
         return []
 
-    triangle = [[1]]
+    result = [[1]]
     for i in range(1, n):
         row = [1]
         for j in range(1, i):
-            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+            row.append(result[i-1][j-1] + result[i-1][j])
         row.append(1)
-        triangle.append(row)
+        result.append(row)
 
-    return triangle
+    return result
