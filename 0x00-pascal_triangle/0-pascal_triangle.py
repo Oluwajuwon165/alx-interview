@@ -2,6 +2,12 @@
 def pascal_triangle(n):
     """
     Returns a list of lists of integers representing the Pascal's triangle of n.
+
+    Args:
+        n (int): The number of rows to generate for the Pascal's triangle.
+
+    Returns:
+        list: A list of lists of integers representing the Pascal's triangle of n.
     """
     if not isinstance(n, int) or n <= 0:
         return []
