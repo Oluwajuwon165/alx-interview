@@ -1,40 +1,42 @@
 #!/usr/bin/python3
 """
-Requirements:
-- Allowed editors: vi, vim, emacs
-- All files will be interpreted/compiled on
-Ubuntu 14.04 LTS using Python 3.4.3
-- All files should end with a new line
-- The first line of all files should be
-exactly #!/usr/bin/python3
-- A README.md file, at the root of the folder
-of the project, is mandatory
-- Your code should use the PEP 8 style (version 1.7.x)
-- All your files must be executable
+UTF-8 Validation
 """
 
 
 def validUTF8(data):
-    """
-    Determines if a given data set represents a valid UTF-8 encoding.
+    # Number of bytes in the current UTF-8 character
+    num_bytes = 0
 
-    Args:
-        data (list): List of integers representing the data set
+    # Iterate over each integer in the data set
+    for num in data:
+        # Get the 8 least significant bits of the integer
+        binary = format(num, '08b')
 
-    Returns:
-        bool: True if data is a valid UTF-8 encoding, else False
-    """
+        # If it's the start of a new character
+        if num_bytes == 0:
+            # Count the number of leading 1s to determine the number of bytes
+            for bit in binary:
+                if bit == '0':
+                    break
+                num_bytes += 1
 
-    # Implementation of the validUTF8 method
+            # Handle invalid number of bytes
+            if num_bytes == 0:
+                continue
 
-# Test code
+            '''For characters with a single byte, no
+            need to check continuation bytes'''
+            if num_bytes == 1 or num_bytes > 4:
+                return False
 
+        else:
+            # Check if the current byte is a valid continuation byte
+            if not (binary[0] == '1' and binary[1] == '0'):
+                return False
 
-data = [65]
-print(validUTF8(data))
+        # Decrement the count of remaining bytes
+        num_bytes -= 1
 
-data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
-print(validUTF8(data))
-
-data = [229, 65, 127, 256]
-print(validUTF8(data))
+    # All bytes have been validated
+    return num_bytes == 0
