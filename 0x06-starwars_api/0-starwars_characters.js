@@ -9,6 +9,7 @@ const request = util.promisify(require('request'));
 
 const filmID = process.argv[2];
 
+// Define an asynchronous function to retrieve and print the characters of a Star Wars movie
 async function starwarsCharacters (filmId) {
   const endpoint = 'https://swapi-api.hbtn.io/api/films/' + filmId;
   let response = await (await request(endpoint)).body;
