@@ -29,9 +29,14 @@ async function starwarsCharacters (filmId) {
 
     // Send a request to the character URL and await the response
     let character = await (await request(urlCharacter)).body;
+
+    // Parse the response as JSON
     character = JSON.parse(character);
+
+    // Print the name of the character
     console.log(character.name);
   }
 }
 
+// Call the 'starwarsCharacters' function with the provided movie ID
 starwarsCharacters(filmID);
