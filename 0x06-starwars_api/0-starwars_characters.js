@@ -1,19 +1,11 @@
 #!/usr/bin/node
 
-// Import the 'util' module from Node.js
 const util = require('util');
-
-// Use 'util.promisify' to convert the 'request'
-// function into a promise-based function
 const request = util.promisify(require('request'));
-
-// Get the movie ID from the command-line arguments
 const filmID = process.argv[2];
 
-// Define an asynchronous function to retrieve and print
-// the characters of a Star Wars movie
+// Retrieve and print the characters of a Star Wars movie
 async function starwarsCharacters(filmId) {
-  // Construct the API endpoint URL
   const endpoint = 'https://swapi-api.hbtn.io/api/films/' + filmId;
 
   // Send a request to the API endpoint and await the response
