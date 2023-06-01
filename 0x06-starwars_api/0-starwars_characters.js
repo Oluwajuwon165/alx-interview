@@ -5,6 +5,8 @@ const util = require('util');
 // Use 'util.promisify' to convert the 'request' function into a promise-based function
 
 const request = util.promisify(require('request'));
+// Get the movie ID from the command-line arguments
+
 const filmID = process.argv[2];
 
 async function starwarsCharacters (filmId) {
