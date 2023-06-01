@@ -16,11 +16,18 @@ async function starwarsCharacters (filmId) {
 
   // Send a request to the API endpoint and await the response
   let response = await (await request(endpoint)).body;
+
+  // Parse the response as JSON
   response = JSON.parse(response);
+
+  // Get the array of characters from the response
   const characters = response.characters;
 
+  // Iterate over each character URL in the array
   for (let i = 0; i < characters.length; i++) {
     const urlCharacter = characters[i];
+
+    // Send a request to the character URL and await the response
     let character = await (await request(urlCharacter)).body;
     character = JSON.parse(character);
     console.log(character.name);
