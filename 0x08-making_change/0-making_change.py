@@ -24,8 +24,11 @@ def makeChange(coins, total):
             if coin <= value:
                 # Use the coin and subtract its value from the current total
                 remaining = value - coin
-                # Update the minimum number of coins needed for the remaining total
-                min_coins[value] = min(min_coins[value], min_coins[remaining] + 1)
+                """Update the minimum number of coins
+                needed for the remaining total"""
+                min_coins[value] = min(
+                        min_coins[value], min_coins[remaining] + 1
+                        )
 
     # If no combination of coins can make the total, return -1
     if min_coins[total] == float('inf'):
